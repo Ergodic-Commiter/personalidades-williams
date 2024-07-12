@@ -4,28 +4,31 @@ from collections import Counter
 import spacy
 nlp = spacy.load("es_core_news_sm")
 
+
 class Personalidad:
     """Encapsulamos los métodos comunes de las personalidades definidas."""
-    _pronouns = ["yo", "mí", "mío", "me"]
+    _pronombres = ["yo", "mí", "mío", "me"]
     
-    def __init__(self, keywords:list=None, pronouns:bool=False): 
-        self.keywords = keywords
-        self.pronouns = pronouns
+    def __init__(self, palabras_claves:list=None, pronombres:bool=False): 
+        self.p_claves = palabras_claves
+        self.pronombres = pronombres
 
-    def count_keywords(self, a_text):
-        doc = nlp(a_text)
-        mentions = [token.text for token in doc in token.text.lower() in self.keywords]
-        return Counter(mentions) 
+    def identificame(self, un_texto):
+        doc = nlp(un_texto)
+        menciones = [token.text for token in doc 
+                if token.text.lower() in self.p_claves]        
+        if not self.pronombres: 
+            return Count(menciones)
+        return self.cuenta_pronombres(un_texto), Count(menciones)
 
-    def count_pronouns(self, a_text): 
-        doc = nlp(a_text)
-        text_pronouns = [token.text for token in doc 
-                if token.pos_ == 'PRON' and token.text.lower() in self._pronouns]
-        return Counter(text_pronouns)
+    def cuenta_pronombres(self, un_texto): 
+        doc = nlp(un_texto)
+        y_pronombres = [token.text for token in doc 
+                if token.pos_ == 'PRON' and token.text.lower() in self._pronombres]
+        return Counter(y_pronombres)
 
 
-
-Narcisismo = Personalidad(["único", "mejor", "increíble", "excepcional"], pronouns=True) 
+Narcisismo = Personalidad(["único", "mejor", "increíble", "excepcional"], pronombres=True) 
 
 Psicopatia = Personalidad(["desprecio", "manipulación", "dominio", "necesario", 
     "fin justifica los medios"])

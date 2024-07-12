@@ -147,16 +147,8 @@ for discurso in discursos_procesados:
     texto = discurso['texto']
     fecha = discurso['fecha']
 
-    psicopatia = identificar_psicopatia(texto)
-    narcisismo = identificar_narcisismo(texto)
-    esquizoide = identificar_esquizoide(texto)
-    paranoia = identificar_paranoia(texto)
-    depresion = identificar_depresion(texto)
-    mania = identificar_mania(texto)
-    masoquismo = identificar_masoquismo(texto)
-    ocd = identificar_ocd(texto)
-    histrionismo = identificar_histrionismo(texto)
-    disociacion = identificar_disociacion(texto)
+    resultados_personalidads = {cada_una, la_personalidad.identificame(texto)
+        for cada_una, la_personalidad in todas_ellas.items()}
     
     resultados_personalidades.append({
         'fecha': fecha,
