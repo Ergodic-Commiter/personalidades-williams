@@ -145,24 +145,12 @@ temas = modelar_temas([disc['texto'] for disc in discursos_procesados])
 resultados_personalidades = []
 for discurso in discursos_procesados:
     texto = discurso['texto']
-    fecha = discurso['fecha']
+    la_fecha = discurso['fecha']
+    los_resultados = {'fecha': la_fecha, 
+        **( cada_una: la_personalidad.identificame(texto)
+        for cada_una, la_personalidad in todas_ellas.items())}
 
-    resultados_personalidads = {cada_una, la_personalidad.identificame(texto)
-        for cada_una, la_personalidad in todas_ellas.items()}
-    
-    resultados_personalidades.append({
-        'fecha': fecha,
-        'psicopatia': psicopatia,
-        'narcisismo': narcisismo,
-        'esquizoide': esquizoide,
-        'paranoia': paranoia,
-        'depresion': depresion,
-        'mania': mania,
-        'masoquismo': masoquismo,
-        'ocd': ocd,
-        'histrionismo': histrionismo,
-        'disociacion': disociacion
-    })
+    resultados_personalidades.append(los_resultados)
 
 # Guardar resultados en CSV y JSON
 guardar_en_csv(resultados_sentimientos, 'sentimientos.csv')
@@ -174,17 +162,8 @@ guardar_en_json(resultados_personalidades, 'personalidades.json')
 # Imprimir algunos resultados
 print("\nResultados de Personalidades:")
 for resultado in resultados_personalidades:
-    print(f"Fecha: {resultado['fecha']}")
-    print(f"Psicopatia: {resultado['psicopatia']}")
-    print(f"Narcisismo: {resultado['narcisismo']}")
-    print(f"Esquizoide: {resultado['esquizoide']}")
-    print(f"Paranoia: {resultado['paranoia']}")
-    print(f"Depresion: {resultado['depresion']}")
-    print(f"Mania: {resultado['mania']}")
-    print(f"Masoquismo: {resultado['masoquismo']}")
-    print(f"OCD: {resultado['ocd']}")
-    print(f"Histrionismo: {resultado['histrionismo']}")
-    print(f"Disociacion: {resultado['disociacion']}")
+    for key, value in resultado.items():
+        print(f"{key}:\t{value}")
 
 # Generar nube de palabras para todos los discursos
 todos_discursos = ' '.join([disc['texto'] for disc in discursos_procesados])
