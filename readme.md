@@ -20,7 +20,7 @@ relacionados con cada tipo de personalidad.
   $ git clone REPO_URL {nombre-local}
   ```
 
-2. Antes creaba el ambiente con Anaconda y se tarda un rato.
+2. Antes creaba el ambiente con Anaconda y se tarda un rato.  
    Ahora ya cambié a `pyenv` pero de momento no lo tengo documentado.  
   ```shell
   $ conda env create -f conda.yml  # comando viejo y tardado.
