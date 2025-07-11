@@ -20,9 +20,10 @@ relacionados con cada tipo de personalidad.
   $ git clone REPO_URL {nombre-local}
   ```
 
-2. Crear ambiente de Anaconda (se tarda un buen rato 😒) 
+2. Antes creaba el ambiente con Anaconda y se tarda un rato.
+   Ahora ya cambié a `pyenv` pero de momento no lo tengo documentado.  
   ```shell
-  $ conda env create -f conda.yml
+  $ conda env create -f conda.yml  # comando viejo y tardado.
   ```  
 
   El ambiente te descarga las librerías de manera local. 
